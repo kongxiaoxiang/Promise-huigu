@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise</title>
+</head>
+<body>
+  <script>
+    let num = Date.now()
+    let p = new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        if(num % 2 ===0){
+          resolve ('恭喜你中奖了，中奖号码为' + num)
+        }else{
+          reject ('很遗憾你没有中奖，号码为' + num)
+        }
+      }, 2000);
+    })
+    p.then(
+      value => {
+        console.log(value)
+      },
+      reason => {
+        console.warn(reason)
+      }
+    )
+  </script>
+</body>
+</html>
