@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="2.Promise.js"></script>
+</head>
+<body>
+  <script>
+    let p = new Promise((reslove,reject) =>{
+      // reslove ('成功的数据')
+      reject ('失败的数据')
+    })
+
+    p.then(
+      value =>{
+        // return {age:23,name:'yyc',college:'ayyz'}
+        // throw '失败的数据----'
+        return new Promise((reslove,reject)=>{
+          // reslove ('gogogogo-----')
+          reject ('downdowndowndown---')
+        })
+      },
+      reason =>{
+        // return 'nononono'
+        // throw 'fail'
+        return new Promise((reslove,reject)=>{
+          // reslove ('ok的数据')
+          reject('不ok的数据')
+        })
+      }
+    ).then(
+      value =>{
+        console.log(value)
+      },
+      reason =>{
+        console.error(reason)
+      }
+    )
+  </script>
+</body>
+</html>
