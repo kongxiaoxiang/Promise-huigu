@@ -29,11 +29,7 @@ function Promise (excutor){
       })
     }
   }
-  try {
     excutor(reslove,reject);
-  } catch (error) {
-    reject (error)
-  }
 }
 
 

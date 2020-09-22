@@ -4,27 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="./2.Promise.js"></script>
+  <script src="2.Promise.js"></script>
 </head>
 <body>
   <script>
     let p = new Promise((reslove,reject)=>{
       setTimeout(() => {
-        // reslove ('success的数据')
-        // reject ('fail的数据')
-        try {
-          throw '失败的数据'
-        } catch (error) {
-          reject (error)
-        }
+        reslove ('success data')
       }, 2000);
     })
+
     p.then(
-      value => {
+      value =>{
+        return 'ok'
+        // return new Promise((reslove,reject)=>{
+        //   // reslove ('success')
+        //   reject ('fail')
+        // })
+      },
+      reason =>{
+
+      }
+    ).then(
+      value =>{
         console.log(value)
       },
       reason =>{
-        console.error(reason)
+        console.log(reason)
       }
     )
   </script>

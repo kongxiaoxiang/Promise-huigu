@@ -9,20 +9,18 @@
 <body>
   <script>
     let p = new Promise((reslove,reject) => {
-      reslove ('成功的数据------')
+      // reslove ('成功的数据------')
       // reject ('失败的数据---')
-      // throw '失败的数据'
+      throw '失败的数据'
     })
-    // console.log(p)
-    // p.then()
-    // p.then(
-    //   value =>{
-    //     console.log(value)
-    //   },
-    //   reason =>{
-    //     console.error(reason)
-    //   }
-    // )
+    p.then(
+      value =>{
+        console.log(value)
+      },
+      reason =>{
+        console.error(reason)
+      }
+    )
   </script>
 </body>
 </html>
