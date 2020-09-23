@@ -29,6 +29,7 @@ function Promise(excutor) {
   excutor(resolve, reject);
 }
 
+//实例对象的then方法
 Promise.prototype.then = function (onResolved, onRejected) {
   const self = this
   return new Promise((resolve, reject) => {
@@ -71,5 +72,68 @@ Promise.prototype.then = function (onResolved, onRejected) {
         }
       })
     }
+  })
+}
+
+//函数对象的resolve方法
+Promise.resolve = function(value){
+  return new Promise((resolve,reject)=>{
+    if(value instanceof Promise){
+      value.then(
+        value =>{
+          resolve(value)
+        },
+        reason =>{
+          reject(reason)
+        }
+      )
+    }else{
+      resolve(value)
+    }
+  })
+}
+
+//函数对象reject方法
+Promise.reject = function(reason){
+  return new Promise((resolve,reject)=>{
+    reject(reason)
+  })
+}
+
+//函数对象all方法
+Promise.all = function(promises){
+  return new Promise((resolve,reject)=>{
+    let successData = []
+    let count = 0;
+    promises.forEach((p,index)=>{
+      p.then(
+        value =>{
+          successData[index] = value
+          count ++;
+          if(count === promises.length){
+            resolve(successData)
+          }
+        },
+        reason =>{
+          reject(reason)
+        }
+      )
+    })
+  })
+}
+
+//函数对象race方法
+Promise.race = function(promises){
+  return new Promise((resolve,reject)=>{
+    promises.forEach((p)=>{
+      p.then(
+        value =>{
+          resolve(value)
+        },
+        reason =>{
+          reject(reason)
+        }
+      )
+    })
   })
 }

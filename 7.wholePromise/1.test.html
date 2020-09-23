@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="2.Promise.js"></script>
+</head>
+<body>
+  <script>
+    // const p1 = Promise.reject ('success')
+    // const p2 = Promise.reject (new Promise((resolve,reject)=>{
+    //   resolve('success-')
+    // }))
+    // const p3 = Promise.reject (new Promise((resolve,reject)=>{
+    //   reject('fail')
+    // }))
+    // const p4 = Promise.reject (Promise.resolve('no'))
+    // console.log(p1)
+    // console.log(p2)
+    // console.log(p3)
+    // console.log(p4)
+    const p1 = new Promise((resolve,reject)=>{
+      resolve ('1111')
+    })
+    const p2 = Promise.resolve('2222') 
+    const p3 = new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve ('3333')
+      }, 2000);
+    })
+    let p = Promise.race([p3,p2,p1])
+    p.then(
+      value =>{
+        console.log(value)
+      },
+      reason =>{
+        console.error(reason)
+      }
+    )
+  </script>
+</body>
+</html>
