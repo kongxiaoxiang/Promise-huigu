@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async&await</title>
+</head>
+<body>
+  <script>
+    //转字符串 json.parse
+    //封装ajax请求
+    function sendAjax(type,url){
+      return new Promise((resolve,reject)=>{
+        //创建对象
+        let xhr = new XMLHttpRequest()
+        //绑定事件
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState ===4 ){
+            if(xhr.status >=200 && xhr.status <300){
+              resolve(xhr.responseText)
+            }else{
+              reject(xhr.status)
+            }
+          }
+        }
+        //初始化
+        xhr.open(type,url)
+        //发送请求
+        xhr.send()
+      })
+    }
+    
+    //声明一个入口的async函数
+    async function main(){
+      let url = 'https://www.runoob.com/ajax/ajax-xmlfile.html'
+      let result = await sendAjax('GET',url)
+      let data = JSON.parse(result)
+      console.log(data)
+    }
+    main()
+  </script>
+</body>
+</html>
